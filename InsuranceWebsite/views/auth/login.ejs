@@ -1,0 +1,27 @@
+<%- include('../partials/header') %>
+<section class="auth-section">
+  <div class="auth-container">
+    <div class="auth-card">
+      <div class="auth-header">
+        <span class="brand-icon large">🛡</span>
+        <h1>Welcome Back</h1>
+        <p>Sign in to manage your policies and claims</p>
+      </div>
+      <form action="/auth/login" method="POST" class="auth-form">
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" required placeholder="you@example.com">
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" required placeholder="Your password">
+        </div>
+        <button type="submit" class="btn btn-primary btn-full btn-lg">Sign In</button>
+      </form>
+      <div class="auth-footer">
+        <p>Don't have an account? <a href="/auth/register">Create one free</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+<%- include('../partials/footer') %>

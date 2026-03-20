@@ -1,0 +1,26 @@
+<%- include('../partials/header') %>
+<section class="dashboard-section">
+  <div class="container">
+    <div class="page-header">
+      <h1>My Profile</h1>
+    </div>
+    <div class="profile-card">
+      <div class="profile-avatar">
+        <span><%= profileUser.name.charAt(0).toUpperCase() %></span>
+      </div>
+      <div class="profile-details">
+        <div class="detail-row"><strong>Name</strong><span><%= profileUser.name %></span></div>
+        <div class="detail-row"><strong>Email</strong><span><%= profileUser.email %></span></div>
+        <div class="detail-row"><strong>Phone</strong><span><%= profileUser.phone || 'Not provided' %></span></div>
+        <div class="detail-row"><strong>Address</strong><span><%= profileUser.address || 'Not provided' %></span></div>
+        <div class="detail-row"><strong>Member Since</strong><span><%= new Date(profileUser.createdAt).toLocaleDateString('en-IN', {year:'numeric', month:'long'}) %></span></div>
+      </div>
+      <div class="profile-actions">
+        <a href="/policies" class="btn btn-primary">My Policies</a>
+        <a href="/claims" class="btn btn-outline">My Claims</a>
+        <a href="/auth/logout" class="btn btn-danger">Logout</a>
+      </div>
+    </div>
+  </div>
+</section>
+<%- include('../partials/footer') %>

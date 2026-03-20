@@ -1,0 +1,26 @@
+<%- include('../partials/header') %>
+<section class="section">
+  <div class="container">
+    <div class="quote-result">
+      <div style="font-size:3rem; margin-bottom:16px;">🎉</div>
+      <h1 style="font-family:'Playfair Display',serif; font-size:1.8rem; margin-bottom:8px;">Hi <%= name %>, here's your quote!</h1>
+      <p style="color:#666; margin-bottom:32px;">Based on your details, your estimated annual premium is:</p>
+      <div class="quote-amount">₹<%= Number(premium).toLocaleString('en-IN') %></div>
+      <p style="color:#666; margin: 8px 0 32px;">per year for <strong><%= insuranceType %></strong> insurance</p>
+      <div style="background:#f8f9fa; border-radius:12px; padding:24px; margin-bottom:32px; text-align:left;">
+        <div class="detail-row"><strong>Coverage Amount</strong><span>₹<%= Number(quote.coverageAmount).toLocaleString('en-IN') %></span></div>
+        <div class="detail-row"><strong>Insurance Type</strong><span style="text-transform:capitalize;"><%= quote.insuranceType %></span></div>
+        <div class="detail-row"><strong>Quote Reference</strong><span><%= quote._id %></span></div>
+      </div>
+      <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
+        <% if (!user) { %>
+          <a href="/auth/register" class="btn btn-primary btn-lg">Create Account to Buy</a>
+        <% } else { %>
+          <a href="/policies/new" class="btn btn-primary btn-lg">Add This Policy</a>
+        <% } %>
+        <a href="/quotes" class="btn btn-outline btn-lg">Get Another Quote</a>
+      </div>
+    </div>
+  </div>
+</section>
+<%- include('../partials/footer') %>

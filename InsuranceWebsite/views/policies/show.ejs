@@ -1,0 +1,43 @@
+<%- include('../partials/header') %>
+<section class="dashboard-section">
+  <div class="container" style="max-width:700px;">
+    <div class="page-header">
+      <h1>Policy Details</h1>
+      <a href="/policies" class="btn btn-outline">← Back</a>
+    </div>
+    <div class="auth-card">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px;">
+        <div>
+          <div class="policy-type"><%= policy.type.toUpperCase() %></div>
+          <div class="policy-num" style="font-size:1.4rem;"><%= policy.policyNumber %></div>
+        </div>
+        <span class="policy-status status-<%= policy.status %>" style="font-size:0.9rem;"><%= policy.status %></span>
+      </div>
+      <div class="profile-details">
+        <div class="detail-row"><strong>Coverage Amount</strong><span>₹<%= Number(policy.coverageAmount).toLocaleString('en-IN') %></span></div>
+        <div class="detail-row"><strong>Annual Premium</strong><span>₹<%= Number(policy.premium).toLocaleString('en-IN') %></span></div>
+        <div class="detail-row"><strong>Start Date</strong><span><%= new Date(policy.startDate).toLocaleDateString('en-IN') %></span></div>
+        <div class="detail-row"><strong>End Date</strong><span><%= new Date(policy.endDate).toLocaleDateString('en-IN') %></span></div>
+        <% if (policy.type === 'auto' && policy.details) { %>
+          <div class="detail-row"><strong>Vehicle</strong><span><%= policy.details.vehicleYear %> <%= policy.details.vehicleMake %> <%= policy.details.vehicleModel %></span></div>
+          <div class="detail-row"><strong>VIN</strong><span><%= policy.details.vehicleVIN %></span></div>
+        <% } else if (policy.type === 'health' && policy.details) { %>
+          <div class="detail-row"><strong>Deductible</strong><span>₹<%= Number(policy.details.deductible || 0).toLocaleString('en-IN') %></span></div>
+        <% } else if (policy.type === 'life' && policy.details) { %>
+          <div class="detail-row"><strong>Beneficiary</strong><span><%= policy.details.beneficiary %></span></div>
+        <% } else if (policy.type === 'home' && policy.details) { %>
+          <div class="detail-row"><strong>Property</strong><span><%= policy.details.propertyAddress %></span></div>
+          <div class="detail-row"><strong>Property Value</strong><span>₹<%= Number(policy.details.propertyValue || 0).toLocaleString('en-IN') %></span></div>
+        <% } %>
+        <div class="detail-row"><strong>Created</strong><span><%= new Date(policy.createdAt).toLocaleDateString('en-IN') %></span></div>
+      </div>
+      <div style="display:flex; gap:12px; margin-top:32px;">
+        <a href="/claims/new" class="btn btn-primary">File a Claim</a>
+        <form action="/policies/<%= policy._id %>?_method=DELETE" method="POST" onsubmit="return confirm('Cancel this policy?')">
+          <button type="submit" class="btn btn-danger">Cancel Policy</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+<%- include('../partials/footer') %>

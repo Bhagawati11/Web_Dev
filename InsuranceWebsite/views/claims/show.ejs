@@ -1,0 +1,32 @@
+<%- include('../partials/header') %>
+<section class="dashboard-section">
+  <div class="container" style="max-width:700px;">
+    <div class="page-header">
+      <h1>Claim Details</h1>
+      <a href="/claims" class="btn btn-outline">← Back</a>
+    </div>
+    <div class="auth-card">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px;">
+        <div class="policy-num" style="font-size:1.4rem;"><%= claim.claimNumber %></div>
+        <span class="policy-status status-<%= claim.status === 'approved' || claim.status === 'paid' ? 'active' : claim.status === 'rejected' ? 'expired' : 'pending' %>"><%= claim.status %></span>
+      </div>
+      <div class="profile-details">
+        <div class="detail-row"><strong>Policy</strong><span><%= claim.policy ? claim.policy.policyNumber : 'N/A' %></span></div>
+        <div class="detail-row"><strong>Claim Amount</strong><span>₹<%= Number(claim.claimAmount).toLocaleString('en-IN') %></span></div>
+        <% if (claim.approvedAmount) { %>
+          <div class="detail-row"><strong>Approved Amount</strong><span>₹<%= Number(claim.approvedAmount).toLocaleString('en-IN') %></span></div>
+        <% } %>
+        <div class="detail-row"><strong>Incident Date</strong><span><%= new Date(claim.incidentDate).toLocaleDateString('en-IN') %></span></div>
+        <div class="detail-row"><strong>Filed On</strong><span><%= new Date(claim.createdAt).toLocaleDateString('en-IN') %></span></div>
+        <div class="detail-row"><strong>Description</strong><span><%= claim.description %></span></div>
+        <% if (claim.notes) { %>
+          <div class="detail-row"><strong>Notes</strong><span><%= claim.notes %></span></div>
+        <% } %>
+      </div>
+      <div style="margin-top:32px;">
+        <a href="/claims" class="btn btn-outline">← All Claims</a>
+      </div>
+    </div>
+  </div>
+</section>
+<%- include('../partials/footer') %>

@@ -1,0 +1,31 @@
+<%- include('../partials/header') %>
+<section class="dashboard-section">
+  <div class="container">
+    <div class="page-header">
+      <h1>My Policies</h1>
+      <a href="/policies/new" class="btn btn-primary">+ Add Policy</a>
+    </div>
+    <% if (policies.length === 0) { %>
+      <div class="empty-state">
+        <div style="font-size:4rem;">📋</div>
+        <p>You don't have any policies yet.</p>
+        <a href="/policies/new" class="btn btn-primary btn-lg" style="margin-top:16px;">Add Your First Policy</a>
+      </div>
+    <% } else { %>
+      <div class="cards-grid">
+        <% policies.forEach(p => { %>
+          <div class="policy-card">
+            <div class="policy-type"><%= p.type.toUpperCase() %></div>
+            <div class="policy-num"><%= p.policyNumber %></div>
+            <span class="policy-status status-<%= p.status %>"><%= p.status %></span>
+            <div class="policy-detail" style="margin-top:12px;">Coverage: ₹<%= Number(p.coverageAmount).toLocaleString('en-IN') %></div>
+            <div class="policy-detail">Premium: ₹<%= Number(p.premium).toLocaleString('en-IN') %>/yr</div>
+            <div class="policy-detail">Expires: <%= new Date(p.endDate).toLocaleDateString('en-IN') %></div>
+            <a href="/policies/<%= p._id %>" class="btn btn-outline btn-sm" style="margin-top:16px;">View Details</a>
+          </div>
+        <% }) %>
+      </div>
+    <% } %>
+  </div>
+</section>
+<%- include('../partials/footer') %>

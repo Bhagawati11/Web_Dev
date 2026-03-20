@@ -1,0 +1,31 @@
+<%- include('../partials/header') %>
+<section class="dashboard-section">
+  <div class="container">
+    <div class="page-header">
+      <h1>My Claims</h1>
+      <a href="/claims/new" class="btn btn-primary">+ File a Claim</a>
+    </div>
+    <% if (claims.length === 0) { %>
+      <div class="empty-state">
+        <div style="font-size:4rem;">📝</div>
+        <p>You haven't filed any claims yet.</p>
+        <a href="/claims/new" class="btn btn-primary btn-lg" style="margin-top:16px;">File Your First Claim</a>
+      </div>
+    <% } else { %>
+      <div class="cards-grid">
+        <% claims.forEach(c => { %>
+          <div class="claim-card">
+            <div class="policy-type"><%= c.policy ? c.policy.type.toUpperCase() : 'UNKNOWN' %></div>
+            <div class="policy-num"><%= c.claimNumber %></div>
+            <span class="policy-status status-<%= c.status === 'submitted' ? 'pending' : c.status === 'approved' || c.status === 'paid' ? 'active' : 'expired' %>"><%= c.status %></span>
+            <div class="policy-detail" style="margin-top:12px;">Amount: ₹<%= Number(c.claimAmount).toLocaleString('en-IN') %></div>
+            <div class="policy-detail">Policy: <%= c.policy ? c.policy.policyNumber : 'N/A' %></div>
+            <div class="policy-detail">Filed: <%= new Date(c.createdAt).toLocaleDateString('en-IN') %></div>
+            <a href="/claims/<%= c._id %>" class="btn btn-outline btn-sm" style="margin-top:16px;">View Details</a>
+          </div>
+        <% }) %>
+      </div>
+    <% } %>
+  </div>
+</section>
+<%- include('../partials/footer') %>

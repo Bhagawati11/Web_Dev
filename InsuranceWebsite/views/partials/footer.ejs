@@ -1,0 +1,44 @@
+@'
+  </main>
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <span class="brand-icon">🛡</span>
+          <span class="brand-name">InsureWell</span>
+          <p>Your trusted partner for comprehensive insurance solutions.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Services</h4>
+          <a href="/services">Health Insurance</a>
+          <a href="/services">Auto Insurance</a>
+          <a href="/services">Life Insurance</a>
+          <a href="/services">Home Insurance</a>
+        </div>
+        <div class="footer-links">
+          <h4>Company</h4>
+          <a href="/about">About Us</a>
+          <a href="/contact">Contact</a>
+          <a href="/quotes">Get a Quote</a>
+        </div>
+        <div class="footer-links">
+          <h4>Account</h4>
+          <% if (user) { %>
+            <a href="/policies">My Policies</a>
+            <a href="/claims">File a Claim</a>
+            <a href="/auth/profile">Profile</a>
+          <% } else { %>
+            <a href="/auth/login">Login</a>
+            <a href="/auth/register">Register</a>
+          <% } %>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; <%= new Date().getFullYear() %> InsureWell. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+  <script src="/js/main.js"></script>
+</body>
+</html>
+'@ | Set-Content -Path "views\partials\footer.ejs" -Encoding UTF8

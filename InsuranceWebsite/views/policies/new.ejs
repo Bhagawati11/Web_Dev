@@ -1,0 +1,43 @@
+<%- include('../partials/header') %>
+<section class="dashboard-section">
+  <div class="container form-container">
+    <h1>Add New Policy</h1>
+    <div class="auth-card" style="margin-top:24px;">
+      <form action="/policies" method="POST" class="auth-form" id="policyForm">
+        <div class="form-group">
+          <label>Insurance Type</label>
+          <select name="type" id="typeSelect" required>
+            <option value="">Select type...</option>
+            <option value="health">🏥 Health Insurance</option>
+            <option value="auto">🚗 Auto Insurance</option>
+            <option value="life">💙 Life Insurance</option>
+            <option value="home">🏠 Home Insurance</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Coverage Amount (₹)</label>
+            <input type="number" name="coverageAmount" required placeholder="500000">
+          </div>
+          <div class="form-group">
+            <label>Annual Premium (₹)</label>
+            <input type="number" name="premium" required placeholder="4800">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Start Date</label>
+            <input type="date" name="startDate" required>
+          </div>
+          <div class="form-group">
+            <label>End Date</label>
+            <input type="date" name="endDate" required>
+          </div>
+        </div>
+        <div id="dynamicFields"></div>
+        <button type="submit" class="btn btn-primary btn-lg btn-full">Create Policy</button>
+      </form>
+    </div>
+  </div>
+</section>
+<%- include('../partials/footer') %>

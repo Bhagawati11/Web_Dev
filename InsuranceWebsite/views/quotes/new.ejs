@@ -1,0 +1,42 @@
+<%- include('../partials/header') %>
+<section class="dashboard-section">
+  <div class="container form-container">
+    <div style="text-align:center; margin-bottom:40px;">
+      <h1 style="font-family:'Playfair Display',serif; font-size:2.5rem;">Get a Free Quote</h1>
+      <p style="color:#666; font-size:1.05rem;">Instant premium estimate — no login required</p>
+    </div>
+    <div class="auth-card">
+      <form action="/quotes" method="POST" class="auth-form" id="quoteForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Your Name</label>
+            <input type="text" name="name" required placeholder="Ravi Kumar">
+          </div>
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" name="email" required placeholder="ravi@example.com">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Phone Number</label>
+            <input type="tel" name="phone" placeholder="+91 98765 43210">
+          </div>
+          <div class="form-group">
+            <label>Insurance Type</label>
+            <select name="insuranceType" id="quoteType" required>
+              <option value="">Select type...</option>
+              <option value="health">🏥 Health Insurance</option>
+              <option value="auto">🚗 Auto Insurance</option>
+              <option value="life">💙 Life Insurance</option>
+              <option value="home">🏠 Home Insurance</option>
+            </select>
+          </div>
+        </div>
+        <div id="quoteFields"></div>
+        <button type="submit" class="btn btn-primary btn-lg btn-full">Calculate My Premium →</button>
+      </form>
+    </div>
+  </div>
+</section>
+<%- include('../partials/footer') %>
