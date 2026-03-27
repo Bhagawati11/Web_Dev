@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix Interactive Dashboard</title>
+
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- PapaParse (CSV Reader) -->
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+
+<!-- CSS -->
+<link rel="stylesheet" href="style.css">
+
+
+</head>
+
+<body>
+
+<header>
+    <h1>🎬 Netflix Interactive Dashboard</h1>
+</header>
+
+<!-- 🔽 FILTERS -->
+
+<section class="filters">
+
+<select id="typeFilter">
+    <option value="All">All Types</option>
+    <option value="Movie">Movie</option>
+    <option value="TV Show">TV Show</option>
+</select>
+
+<select id="ratingFilter">
+    <option value="All">All Ratings</option>
+</select>
+
+<div class="year-control">
+    <input type="range" id="yearRange" min="2000" max="2021" value="2021">
+    <span id="yearLabel">Up to: 2021</span>
+</div>
+
+
+</section>
+
+<!-- 🔽 KPI CARDS -->
+
+<section class="kpis">
+
+
+<div class="card">
+    <h3>Total Titles</h3>
+    <p id="totalTitles">0</p>
+</div>
+
+<div class="card">
+    <h3>Movies</h3>
+    <p id="movies">0</p>
+</div>
+
+<div class="card">
+    <h3>TV Shows</h3>
+    <p id="tvShows">0</p>
+
+
+</section>
+
+<!-- 🔽 CHARTS -->
+
+<section class="charts">
+
+
+<div class="chart-card">
+    <h3>Content Type Distribution</h3>
+    <canvas id="typeChart"></canvas>
+</div>
+
+<div class="chart-card">
+    <h3>Release Year Trend</h3>
+    <canvas id="yearChart"></canvas>
+</div>
+
+<div class="chart-card">
+    <h3>Top Genres</h3>
+    <canvas id="genreChart"></canvas>
+</div>
+
+
+</section>
+
+<!-- 🔽 JS -->
+
+<script src="script.js"></script>
+
+</body>
+</html>

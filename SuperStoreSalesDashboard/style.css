@@ -1,0 +1,103 @@
+/* ===== GLOBAL ===== */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #eef2f7, #d9e2ec);
+    margin: 0;
+    padding: 25px;
+}
+
+/* ===== DASHBOARD TITLE ===== */
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 32px;
+    color: #1f2d3d;
+    letter-spacing: 1px;
+}
+
+/* ===== FILTER SECTION ===== */
+.filters {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+select, input[type="date"] {
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 1px solid #d1d9e6;
+    background: white;
+    font-size: 14px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    transition: 0.2s;
+}
+
+select:hover, input:hover {
+    border-color: #4a90e2;
+}
+
+/* ===== KPI CARDS ===== */
+.kpis {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px;
+    margin-bottom: 35px;
+}
+
+.card {
+    background: linear-gradient(145deg, #ffffff, #f1f5f9);
+    padding: 22px;
+    border-radius: 14px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    text-align: center;
+    transition: transform 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card h3 {
+    margin-bottom: 10px;
+    font-size: 15px;
+    color: #6b7c93;
+}
+
+.card p {
+    font-size: 26px;
+    font-weight: 700;
+    color: #2c3e50;
+}
+
+/* ===== CHART SECTION ===== */
+.charts {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.chart-card {
+    background: white;
+    padding: 18px 22px 22px 22px;
+    border-radius: 16px;
+    box-shadow: 0 8px 22px rgba(0,0,0,0.08);
+    height: 330px;
+    transition: transform 0.2s;
+}
+
+.chart-card:hover {
+    transform: translateY(-6px);
+}
+
+.chart-card h3 {
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #2f3e4e;
+}
+
+.chart-card canvas {
+    width: 100% !important;
+    height: 250px !important;
+}

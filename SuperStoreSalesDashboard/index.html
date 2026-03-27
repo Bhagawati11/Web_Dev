@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>Superstore Sales Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+</head>
+<body>
+
+<h1>📊 Superstore Sales Dashboard</h1>
+
+<div class="filters">
+    <select id="regionFilter">
+        <option value="All">All Regions</option>
+    </select>
+    <input type="date" id="startDate">
+    <input type="date" id="endDate">
+</div>
+
+<div class="kpis">
+    <div class="card">
+        <h3>Total Sales</h3>
+        <p id="totalSales">0</p>
+    </div>
+    <div class="card">
+        <h3>Total Profit</h3>
+        <p id="totalProfit">0</p>
+    </div>
+    <div class="card">
+        <h3>Total Orders</h3>
+        <p id="totalOrders">0</p>
+    </div>
+    <div class="card">
+        <h3>Profit Margin %</h3>
+        <p id="profitMargin">0%</p>
+    </div>
+</div>
+
+<div class="charts">
+    <div class="chart-card">
+        <h3>Sales Trend</h3>
+        <canvas id="salesTrend"></canvas>
+    </div>
+    <div class="chart-card">
+        <h3>Profit by Region</h3>
+        <canvas id="profitRegion"></canvas>
+    </div>
+    <div class="chart-card">
+        <h3>Category Sales Distribution</h3>
+        <canvas id="categorySales"></canvas>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
