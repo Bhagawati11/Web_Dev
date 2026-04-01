@@ -1,0 +1,22 @@
+{
+  "name": "ecoDispose",
+  "version": "1.0.0",
+  "description": "EcoDispose: Intelligent E-waste Management Platform",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "keywords": ["e-waste", "environment", "recycling", "node", "express", "mongodb"],
+  "author": "CollegeWebDev",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongoose": "^7.6.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}

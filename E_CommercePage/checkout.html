@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Checkout | ByteBasket</title>
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/checkout.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-wrapper">
+    <a href="index.html" class="brand">ByteBasket</a>
+
+    <div class="nav-actions">
+      <a href="signup.html">SignUp</a>
+      <a href="cart.html">Cart (<span id="cartCount">0</span>)</a>
+      <a href="cart.html">Cart</a>
+    </div>
+    <div id="profileArea"></div>
+
+  </div>
+</nav>
+
+
+<section class="checkout-page">
+  <div class="checkout-box">
+    <h2>Checkout</h2>
+    <form id="checkoutForm">
+      <input placeholder="Full Name" required>
+      <textarea placeholder="Address" required></textarea>
+      <input placeholder="Phone" required>
+
+      <button type="submit">Place Order</button>
+    </form>
+  </div>
+</section>
+
+<script src="js/common.js"></script>
+<script src="js/checkout.js"></script>
+
+
+</body>
+</html>

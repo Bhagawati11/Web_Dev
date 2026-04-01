@@ -1,0 +1,52 @@
+.checkout-page {
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+/* CHECKOUT FORM CARD */
+.checkout-box {
+  width: 100%;
+  max-width: 420px;   /* vertical layout */
+  background: #1e293b;
+  padding: 30px;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+/* FORM FIELDS */
+#checkoutForm input,
+#checkoutForm textarea {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 12px;
+  background: #334155;
+  border: none;
+  border-radius: 8px;
+  color: white;
+}
+
+#checkoutForm textarea {
+  resize: none;
+  height: 80px;
+}
+
+/* BUTTON */
+#checkoutForm button {
+  width: 100%;
+  margin-top: 10px;
+}
+
+/* ORDER SUMMARY */
+#summary {
+  margin: 15px 0;
+}
+
+#total {
+  font-weight: 700;
+  font-size: 18px;
+  color: #38bdf8;
+}

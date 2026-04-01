@@ -1,0 +1,117 @@
+/* HERO */
+.hero {
+  text-align: center;
+  padding: 50px;
+  background: linear-gradient(135deg, #68a593, #03835c);
+}
+
+/* CATEGORIES */
+.categories {
+  text-align: center;
+  padding: 20px;
+}
+
+.categories ul {
+  list-style: none;
+  padding: 0;
+}
+
+.categories li {
+  display: inline-block;
+  margin: 5px 10px;
+}
+
+.categories button {
+  background: #1e293b;
+  color: white;
+  border: 1px solid #334155;
+  padding: 8px 16px;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.categories button:hover {
+  background: #037f59;
+}
+
+/* PRODUCT GRID */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+  padding: 30px 80px;
+}
+
+.card {
+  background: #1e293b;
+  padding: 18px;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+  transition: transform 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+}
+
+.card img {
+  width: 100%;
+  height: 160px;
+  object-fit: contain;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1000px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .product-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* DROPDOWN */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropbtn {
+  background: #03835c;
+  border: none;
+  padding: 8px 16px;
+  color: white;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background: #1e293b;
+  min-width: 160px;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: white;
+  padding: 10px 14px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background: #037f59;
+}
+
+.show {
+  display: block;
+}
+

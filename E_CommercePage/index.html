@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ByteBasket</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/common.css">
+<link rel="stylesheet" href="css/shop.css">
+
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="nav-wrapper">
+    <a href="index.html" class="brand">ByteBasket</a>
+
+    <div class="nav-actions">
+      <div class="dropdown">
+        <button class="dropbtn" id="categoryBtn">Categories ▾</button>
+        <div class="dropdown-content" id="dropdownMenu">
+        <a href="#" data-category="all">All</a>
+        <a href="#" data-category="mobiles">Mobiles</a>
+        <a href="#" data-category="laptops">Laptops</a>
+        <a href="#" data-category="headphones">Headphones</a>
+        <a href="#" data-category="smartwatches">Smartwatches</a>
+        </div>
+      </div>
+      <a href="cart.html">Cart (<span id="cartCount">0</span>)</a>
+      <a href="checkout.html">Checkout</a>
+      <div id="profileArea"></div>
+    </div>
+  </div>
+</nav>
+
+
+  <!-- HERO -->
+  <section class="hero">
+    <h2>Electronics Store</h2>
+  </section>
+
+  <!-- CATEGORIES -->
+  <section class="categories">
+    <ul id="categoryList"></ul>
+  </section>
+
+  <!-- PRODUCTS -->
+  <main id="productGrid" class="product-grid"></main>
+
+  <script  src="js/common.js"> </script>
+  <script type="module" src="js/shop.js"></script>
+</body>
+</html>

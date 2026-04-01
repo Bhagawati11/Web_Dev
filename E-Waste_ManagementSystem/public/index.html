@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EcoDispose - Intelligent E-waste Management</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&family=Roboto+Slab:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar hero">
+    <div class="hero-content">
+      <h1>EcoDispose</h1>
+      <p>Intelligent E-waste Management Platform for sustainable cities</p>
+      <div class="tabs" role="tablist" aria-label="EcoDispose sections">
+        <button class="tab active" data-tab="home">Home</button>
+        <button class="tab" data-tab="centers">Centers</button>
+        <button class="tab" data-tab="pickup">Pickup</button>
+        <button class="tab" data-tab="awareness">Awareness</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="home" class="tab-panel active">
+      <div class="intro cards">
+        <article>
+          <img src="https://images.unsplash.com/photo-1581091215367-2c8fbae31dd0?auto=format&fit=crop&w=800&q=70" alt="E-waste disposal" />
+          <h3>Safe Disposal</h3>
+          <p>EcoDispose guides you through certified paths to recycle or repurpose electronic waste with minimal environmental impact.</p>
+        </article>
+        <article>
+          <img src="https://images.unsplash.com/photo-1561089773-51514f3ae8be?auto=format&fit=crop&w=800&q=70" alt="Recycling centers" />
+          <h3>Authorized Centers</h3>
+          <p>Find nearby authorized recycling centers and logistics allies in your city for trusted acceptance and processing.</p>
+        </article>
+        <article>
+          <img src="https://images.unsplash.com/photo-1565372915192-d151f22b266b?auto=format&fit=crop&w=800&q=70" alt="Pickup scheduling" />
+          <h3>Pickup Scheduling</h3>
+          <p>Schedule collection for multiple locations, track status, and keep your e-waste out of landfills.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="guidance" class="tab-panel">
+      <div class="block">
+        <h2>Waste Identification & Guidance</h2>
+        <div class="row">
+          <select id="waste-type">
+            <option value="">Select e-waste type</option>
+            <option value="laptops">Laptops</option>
+            <option value="mobiles">Mobiles</option>
+            <option value="batteries">Batteries</option>
+            <option value="monitors">Monitors</option>
+            <option value="accessories">Accessories</option>
+          </select>
+          <button id="get-guide">Get Guidance</button>
+        </div>
+        <p id="guide-output" class="output">Choose a type to get safe disposal advice.</p>
+      </div>
+    </section>
+
+    <section id="centers" class="tab-panel">
+      <div class="block">
+        <h2>Recycling Center Finder</h2>
+        <div class="row">
+          <button id="load-centers">Load Authorized Centers</button>
+          <button id="find-local">Find Near Me</button>
+        </div>
+        <ul id="center-list" class="card-list"></ul>
+      </div>
+    </section>
+    <section id="pickup" class="tab-panel">
+      <div class="block">
+        <h2>Schedule Pickup</h2>
+        <form id="pickup-form" class="grid-form">
+          <input type="text" id="name" placeholder="Name" required />
+          <input type="tel" id="phone" placeholder="Phone" required />
+          <input type="text" id="location" placeholder="Pickup Location" required />
+          <select id="pickup-type" required>
+            <option value="">E-waste type</option>
+            <option value="laptops">Laptops</option>
+            <option value="mobiles">Mobiles</option>
+            <option value="batteries">Batteries</option>
+            <option value="monitors">Monitors</option>
+            <option value="accessories">Accessories</option>
+          </select>
+          <input type="date" id="scheduledDate" required />
+          <input type="number" id="quantity" min="1" value="1" />
+          <button type="submit" class="wide-btn">Request Pickup</button>
+        </form>
+        <p id="pickup-msg" class="output"></p>
+      </div>
+
+      <div class="block">
+        <h2>Pickup Requests</h2>
+        <button id="refresh-pickups" class="small-btn">Refresh List</button>
+        <ul id="pickup-list" class="card-list"></ul>
+      </div>
+    </section>
+
+    <section id="awareness" class="tab-panel">
+      <div class="block">
+        <h2>Awareness & Sustainability Tips</h2>
+        <button id="load-tips" class="small-btn">Load Tips</button>
+        <ul id="tips-list" class="tips-list"></ul>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 EcoDispose. Built for smarter, safer e-waste management.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

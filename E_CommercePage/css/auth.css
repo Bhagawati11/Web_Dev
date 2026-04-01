@@ -1,0 +1,83 @@
+/* =========================
+   AUTH PAGE WRAPPER
+========================= */
+
+.auth-page {
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+/* =========================
+   AUTH CARD
+========================= */
+
+.auth-box {
+  background: #1e293b;
+  width: 100%;
+  max-width: 380px;
+  padding: 35px 30px;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+/* =========================
+   HEADINGS
+========================= */
+
+.auth-box h2 {
+  margin-bottom: 25px;
+  color: #03835c;
+  text-align: center;
+}
+
+/* =========================
+   INPUT FIELDS
+========================= */
+
+.auth-box input {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  background: #334155;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 14px;
+}
+
+.auth-box input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #03835c;
+}
+
+/* =========================
+   BUTTON
+========================= */
+
+.auth-box button {
+  width: 100%;
+  margin-top: 10px;
+}
+
+/* =========================
+   EXTRA LINKS
+========================= */
+
+.auth-box p {
+  margin-top: 15px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.auth-box a {
+  color: #38bdf8;
+  text-decoration: none;
+}
+
+.auth-box a:hover {
+  text-decoration: underline;
+}

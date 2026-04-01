@@ -1,0 +1,147 @@
+/* GLOBAL RESET */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  background: #0f172a;
+  color: #e2e8f0;
+}
+
+/* NAVBAR */
+nav {
+  background: #1e293b;
+  padding: 15px 40px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.nav-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.brand {
+  color: #03835c;
+  font-size: 24px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+/* .nav-actions a {
+  margin-left: 12x;
+  font-size: 15px;
+  font-weight: 600;
+  color: #03835c;
+  text-decoration: none;
+} */
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: nowrap;   /* prevent wrapping */
+}
+
+
+.nav-btn {
+  padding: 8px 16px;
+  border-radius: 25px;
+  text-decoration: none;
+  color: #03835c;
+}
+
+/* LINKS */
+a {
+  color: #03835c;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* BUTTONS */
+button {
+  background: #03835c;
+  border: none;
+  padding: 10px 18px;
+  color: white;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #037f59;
+  transform: scale(1.05);
+}
+
+.dropdown-content {
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
+.toast {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #03835c;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  animation: fadeInOut 2s ease forwards;
+  z-index: 9999;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translate(-50%, -10px); }
+  10% { opacity: 1; transform: translate(-50%, 0); }
+  90% { opacity: 1; }
+  100% { opacity: 0; transform: translate(-50%, -10px); }
+}
+
+.profile-name {
+  background: none;
+  border: none;
+  color: #03835c;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 15px;
+  padding: 0;
+}
+.profile-dropdown .dropdown-content {
+  right: 0;
+  left: auto;
+  min-width: 140px;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: nowrap;
+}
+
+.profile-name {
+  cursor: pointer;
+  font-weight: 600;
+  color: #03835c;
+}
+
+.profile-dropdown {
+  position: relative;
+}
+
+.profile-menu {
+  right: 0;
+  left: auto;
+}
