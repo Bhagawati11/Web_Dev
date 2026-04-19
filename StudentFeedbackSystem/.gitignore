@@ -1,0 +1,11 @@
+.sixth
+node_modules
+dist
+build
+*.log
+*.tmp
+*.
+env
+*.env
+.DS_Store
+.idea
