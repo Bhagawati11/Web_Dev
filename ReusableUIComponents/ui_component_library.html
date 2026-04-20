@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UI Component Library</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Mono:wght@400;500&family=Fraunces:ital,opsz,wght@0,9..144,300;1,9..144,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0e0e0f;
+    --surface: #161618;
+    --surface2: #1e1e21;
+    --border: rgba(255,255,255,0.08);
+    --border-hi: rgba(255,255,255,0.18);
+    --text: #f0ede8;
+    --muted: #888580;
+    --accent: #c8f03d;
+    --accent-dim: rgba(200,240,61,0.12);
+    --accent2: #ff6b4a;
+    --accent3: #7eb8ff;
+    --accent4: #d4a8ff;
+    --radius-sm: 6px;
+    --radius: 12px;
+    --radius-lg: 20px;
+    --font-head: 'Syne', sans-serif;
+    --font-body: 'DM Mono', monospace;
+    --font-serif: 'Fraunces', serif;
+    --transition: 0.18s cubic-bezier(0.4,0,0.2,1);
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 13px;
+    line-height: 1.6;
+    min-height: 100vh;
+    padding: 48px 40px;
+  }
+
+  .page-header {
+    margin-bottom: 64px;
+  }
+  .page-header h1 {
+    font-family: var(--font-head);
+    font-size: clamp(36px, 6vw, 72px);
+    font-weight: 800;
+    letter-spacing: -2px;
+    line-height: 0.95;
+    color: var(--text);
+  }
+  .page-header h1 span {
+    color: var(--accent);
+  }
+  .page-header p {
+    margin-top: 16px;
+    color: var(--muted);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .section {
+    margin-bottom: 72px;
+  }
+  .section-label {
+    font-family: var(--font-head);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border-left: 2px solid var(--accent);
+    padding-left: 10px;
+    margin-bottom: 28px;
+  }
+
+  /* ─── BUTTONS ─── */
+  .btn-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+
+  .btn {
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: var(--transition);
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+  }
+  .btn::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,0);
+    transition: var(--transition);
+  }
+  .btn:hover::after { background: rgba(255,255,255,0.06); }
+  .btn:active { transform: scale(0.97); }
+
+  .btn-primary {
+    background: var(--accent);
+    color: #0e0e0f;
+    padding: 10px 22px;
+    border-radius: var(--radius-sm);
+    font-weight: 700;
+  }
+  .btn-primary:hover { background: #d9ff52; }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--text);
+    padding: 9px 22px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-hi);
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--muted);
+    padding: 9px 22px;
+    border-radius: var(--radius-sm);
+  }
+  .btn-ghost:hover { color: var(--text); }
+
+  .btn-danger {
+    background: rgba(255,107,74,0.15);
+    color: var(--accent2);
+    padding: 9px 22px;
+    border-radius: var(--radius-sm);
+    border: 1px solid rgba(255,107,74,0.3);
+  }
+  .btn-danger:hover { background: rgba(255,107,74,0.25); }
+
+  .btn-icon {
+    background: var(--surface2);
+    color: var(--text);
+    width: 38px; height: 38px;
+    border-radius: var(--radius-sm);
+    justify-content: center;
+    border: 1px solid var(--border);
+  }
+  .btn-icon:hover { border-color: var(--accent); }
+
+  .btn-pill {
+    background: var(--accent4);
+    color: #0e0e0f;
+    padding: 9px 24px;
+    border-radius: 999px;
+    font-weight: 700;
+  }
+  .btn-pill:hover { background: #e2c5ff; }
+
+  .btn-loading {
+    background: var(--surface2);
+    color: var(--muted);
+    padding: 10px 22px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+    pointer-events: none;
+  }
+  .spinner {
+    width: 12px; height: 12px;
+    border: 2px solid var(--border-hi);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ─── BADGES ─── */
+  .badge-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .badge {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 500;
+    padding: 3px 10px;
+    border-radius: 999px;
+    letter-spacing: 0.04em;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .badge-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+  .badge-success { background: rgba(100,220,120,0.12); color: #7deda0; border: 1px solid rgba(100,220,120,0.2); }
+  .badge-success .badge-dot { background: #7deda0; }
+  .badge-warning { background: rgba(255,195,0,0.12); color: #ffc952; border: 1px solid rgba(255,195,0,0.2); }
+  .badge-warning .badge-dot { background: #ffc952; }
+  .badge-error { background: rgba(255,80,80,0.12); color: #ff8080; border: 1px solid rgba(255,80,80,0.2); }
+  .badge-error .badge-dot { background: #ff8080; }
+  .badge-info { background: rgba(126,184,255,0.12); color: var(--accent3); border: 1px solid rgba(126,184,255,0.2); }
+  .badge-info .badge-dot { background: var(--accent3); }
+  .badge-neutral { background: var(--surface2); color: var(--muted); border: 1px solid var(--border); }
+  .badge-accent { background: var(--accent-dim); color: var(--accent); border: 1px solid rgba(200,240,61,0.2); }
+
+  /* ─── CARDS ─── */
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+  }
+  .card:hover { border-color: var(--border-hi); transform: translateY(-2px); }
+
+  .card-accent-bar {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+  }
+
+  .card-icon {
+    width: 40px; height: 40px;
+    border-radius: var(--radius-sm);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    margin-bottom: 16px;
+  }
+  .card-title {
+    font-family: var(--font-head);
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: var(--text);
+  }
+  .card-desc {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+  .card-metric {
+    font-family: var(--font-head);
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--text);
+    letter-spacing: -1px;
+    margin-bottom: 4px;
+  }
+  .card-delta {
+    font-size: 11px;
+    color: #7deda0;
+  }
+  .card-delta.neg { color: #ff8080; }
+
+  /* ─── INPUTS ─── */
+  .input-stack { display: flex; flex-direction: column; gap: 16px; max-width: 440px; }
+
+  .input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .input-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .input-field {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 10px 14px;
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 13px;
+    outline: none;
+    transition: var(--transition);
+    width: 100%;
+  }
+  .input-field:focus { border-color: var(--accent); background: var(--surface2); box-shadow: 0 0 0 3px var(--accent-dim); }
+  .input-field::placeholder { color: var(--muted); }
+  .input-field.error { border-color: rgba(255,80,80,0.5); }
+  .input-field.error:focus { box-shadow: 0 0 0 3px rgba(255,80,80,0.1); }
+  .input-hint { font-size: 11px; color: var(--muted); }
+  .input-hint.error { color: #ff8080; }
+
+  .input-with-icon {
+    position: relative;
+  }
+  .input-with-icon .input-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--muted);
+    font-size: 14px;
+    pointer-events: none;
+  }
+  .input-with-icon .input-field { padding-left: 36px; }
+
+  /* ─── TOGGLE / CHECKBOX ─── */
+  .toggle-row { display: flex; flex-direction: column; gap: 16px; }
+  .toggle-item { display: flex; align-items: center; gap: 12px; cursor: pointer; }
+
+  .toggle {
+    width: 42px; height: 24px;
+    border-radius: 999px;
+    background: var(--surface2);
+    border: 1px solid var(--border-hi);
+    position: relative;
+    cursor: pointer;
+    transition: var(--transition);
+    flex-shrink: 0;
+  }
+  .toggle.on { background: var(--accent); border-color: var(--accent); }
+  .toggle-thumb {
+    position: absolute;
+    top: 3px; left: 3px;
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    background: var(--muted);
+    transition: var(--transition);
+  }
+  .toggle.on .toggle-thumb { left: 21px; background: #0e0e0f; }
+  .toggle-label { font-size: 13px; color: var(--text); user-select: none; }
+  .toggle-sub { font-size: 11px; color: var(--muted); }
+
+  .checkbox {
+    width: 18px; height: 18px;
+    border-radius: 4px;
+    border: 1px solid var(--border-hi);
+    background: transparent;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: var(--transition);
+    flex-shrink: 0;
+  }
+  .checkbox.checked { background: var(--accent); border-color: var(--accent); }
+  .checkbox.checked::after { content: '✓'; font-size: 11px; color: #0e0e0f; font-weight: 700; }
+
+  /* ─── AVATAR ─── */
+  .avatar-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .avatar {
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-head);
+    font-weight: 700;
+    flex-shrink: 0;
+    position: relative;
+  }
+  .avatar-sm { width: 32px; height: 32px; font-size: 11px; }
+  .avatar-md { width: 44px; height: 44px; font-size: 14px; }
+  .avatar-lg { width: 60px; height: 60px; font-size: 18px; }
+  .avatar-status {
+    position: absolute;
+    bottom: 1px; right: 1px;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    border: 2px solid var(--bg);
+  }
+  .avatar-group { display: flex; }
+  .avatar-group .avatar { margin-left: -10px; border: 2px solid var(--bg); }
+  .avatar-group .avatar:first-child { margin-left: 0; }
+
+  /* ─── PROGRESS ─── */
+  .progress-stack { display: flex; flex-direction: column; gap: 20px; max-width: 440px; }
+  .progress-header { display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 12px; color: var(--muted); }
+  .progress-bar {
+    height: 6px;
+    background: var(--surface2);
+    border-radius: 999px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    border-radius: 999px;
+    transition: width 0.6s cubic-bezier(0.4,0,0.2,1);
+  }
+
+  /* ─── TOOLTIP ─── */
+  .tooltip-row { display: flex; gap: 16px; flex-wrap: wrap; }
+  .tooltip-wrap {
+    position: relative;
+    display: inline-flex;
+  }
+  .tooltip-box {
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--surface2);
+    border: 1px solid var(--border-hi);
+    border-radius: var(--radius-sm);
+    padding: 6px 12px;
+    font-size: 11px;
+    color: var(--text);
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s;
+  }
+  .tooltip-box::after {
+    content: '';
+    position: absolute;
+    top: 100%; left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: var(--border-hi);
+  }
+  .tooltip-wrap:hover .tooltip-box { opacity: 1; }
+
+  /* ─── TABS ─── */
+  .tabs { border-bottom: 1px solid var(--border); display: flex; gap: 0; margin-bottom: 20px; }
+  .tab {
+    padding: 10px 18px;
+    font-family: var(--font-body);
+    font-size: 12px;
+    color: var(--muted);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    transition: var(--transition);
+    user-select: none;
+  }
+  .tab:hover { color: var(--text); }
+  .tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+  .tab-content { font-size: 13px; color: var(--muted); padding: 4px 0; }
+
+  /* ─── ALERT ─── */
+  .alert-stack { display: flex; flex-direction: column; gap: 12px; }
+  .alert {
+    border-radius: var(--radius-sm);
+    padding: 14px 16px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    border: 1px solid;
+    font-size: 13px;
+  }
+  .alert-icon { font-size: 15px; flex-shrink: 0; margin-top: 1px; }
+  .alert-title { font-weight: 500; margin-bottom: 2px; }
+  .alert-body { font-size: 12px; opacity: 0.8; }
+  .alert-success { background: rgba(100,220,120,0.07); border-color: rgba(100,220,120,0.2); color: #7deda0; }
+  .alert-warning { background: rgba(255,195,0,0.07); border-color: rgba(255,195,0,0.2); color: #ffc952; }
+  .alert-error { background: rgba(255,80,80,0.07); border-color: rgba(255,80,80,0.2); color: #ff8080; }
+  .alert-info { background: rgba(126,184,255,0.07); border-color: rgba(126,184,255,0.2); color: var(--accent3); }
+
+  /* ─── TAG / CHIP ─── */
+  .chip-row { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 5px 12px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    font-size: 12px;
+    color: var(--text);
+    cursor: pointer;
+    transition: var(--transition);
+    user-select: none;
+  }
+  .chip:hover { border-color: var(--border-hi); }
+  .chip.active { background: var(--accent-dim); border-color: rgba(200,240,61,0.3); color: var(--accent); }
+  .chip-x {
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    background: var(--border-hi);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 9px;
+    color: var(--muted);
+    flex-shrink: 0;
+  }
+
+  /* ─── SKELETON ─── */
+  .skeleton-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+  }
+  .skeleton {
+    background: linear-gradient(90deg, var(--surface2) 25%, var(--surface) 50%, var(--surface2) 75%);
+    background-size: 200% 100%;
+    border-radius: 4px;
+    animation: shimmer 1.4s infinite;
+  }
+  @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+  .skeleton-circle { border-radius: 50%; }
+  .skeleton-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+
+  /* ─── NOTIFICATION TOAST ─── */
+  .toast-preview {
+    background: var(--surface);
+    border: 1px solid var(--border-hi);
+    border-radius: var(--radius);
+    padding: 14px 16px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    max-width: 320px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  }
+  .toast-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    margin-top: 4px;
+    flex-shrink: 0;
+  }
+  .toast-content { flex: 1; }
+  .toast-title { font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 3px; }
+  .toast-msg { font-size: 12px; color: var(--muted); }
+  .toast-close { color: var(--muted); cursor: pointer; font-size: 14px; line-height: 1; }
+  .toast-close:hover { color: var(--text); }
+
+  /* ─── SELECT DROPDOWN ─── */
+  .select-field {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 10px 14px;
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 13px;
+    outline: none;
+    transition: var(--transition);
+    width: 100%;
+    max-width: 260px;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888580' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 36px;
+    cursor: pointer;
+  }
+  .select-field:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-dim); }
+  .select-field option { background: #1e1e21; }
+
+  /* ─── DIVIDER ─── */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 8px 0;
+  }
+  .divider-label {
+    display: flex; align-items: center; gap: 12px;
+    color: var(--muted); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+  }
+  .divider-label::before, .divider-label::after {
+    content: ''; flex: 1; height: 1px; background: var(--border);
+  }
+
+  /* ─── STAT CARD ─── */
+  .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; }
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition);
+  }
+  .stat-card:hover { border-color: var(--border-hi); }
+  .stat-card::before {
+    content: '';
+    position: absolute;
+    bottom: -20px; right: -20px;
+    width: 80px; height: 80px;
+    border-radius: 50%;
+    opacity: 0.06;
+  }
+  .stat-label { font-size: 11px; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
+  .stat-value { font-family: var(--font-head); font-size: 28px; font-weight: 800; letter-spacing: -1px; }
+  .stat-change { font-size: 11px; margin-top: 6px; }
+  .up { color: #7deda0; } .down { color: #ff8080; }
+
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <h1>component<br><span>library</span></h1>
+  <p>Reusable UI · Dark System · Production-grade</p>
+</div>
+
+<!-- BUTTONS -->
+<section class="section">
+  <div class="section-label">Buttons</div>
+  <div class="btn-row">
+    <button class="btn btn-primary">Deploy now</button>
+    <button class="btn btn-outline">View source</button>
+    <button class="btn btn-ghost">Cancel</button>
+    <button class="btn btn-danger">Delete</button>
+    <button class="btn btn-pill">Get started ↗</button>
+    <button class="btn btn-icon" title="Search">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg>
+    </button>
+    <button class="btn btn-icon" title="Settings">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v3m0 16v3M4.22 4.22l2.12 2.12m11.32 11.32 2.12 2.12M1 12h3m16 0h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg>
+    </button>
+    <button class="btn btn-loading">
+      <div class="spinner"></div>
+      Processing
+    </button>
+  </div>
+</section>
+
+<!-- BADGES -->
+<section class="section">
+  <div class="section-label">Badges & Status</div>
+  <div class="badge-row">
+    <span class="badge badge-success"><span class="badge-dot"></span>Online</span>
+    <span class="badge badge-warning"><span class="badge-dot"></span>Pending</span>
+    <span class="badge badge-error"><span class="badge-dot"></span>Failed</span>
+    <span class="badge badge-info"><span class="badge-dot"></span>Syncing</span>
+    <span class="badge badge-neutral">Draft</span>
+    <span class="badge badge-accent">v2.4.1</span>
+    <span class="badge badge-neutral" style="border-radius:4px; padding: 3px 8px;">NEW</span>
+    <span class="badge badge-accent" style="font-size:10px; padding: 2px 8px;">PRO</span>
+  </div>
+</section>
+
+<!-- STAT CARDS -->
+<section class="section">
+  <div class="section-label">Stat Cards</div>
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="stat-card" style="position:absolute;bottom:-20px;right:-20px;width:80px;height:80px;border-radius:50%;background:var(--accent);opacity:0.06;border:none;padding:0;"></div>
+      <div class="stat-label">Revenue</div>
+      <div class="stat-value" style="color:var(--accent)">$84.2k</div>
+      <div class="stat-change up">↑ 12.4% this month</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Active users</div>
+      <div class="stat-value" style="color:var(--accent3)">14,830</div>
+      <div class="stat-change up">↑ 8.1% vs last week</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Churn rate</div>
+      <div class="stat-value" style="color:var(--accent2)">2.3%</div>
+      <div class="stat-change down">↓ 0.4% this quarter</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Uptime</div>
+      <div class="stat-value" style="color:var(--accent4)">99.98%</div>
+      <div class="stat-change up">30-day average</div>
+    </div>
+  </div>
+</section>
+
+<!-- CARDS -->
+<section class="section">
+  <div class="section-label">Feature Cards</div>
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-accent-bar" style="background: var(--accent);"></div>
+      <div class="card-icon" style="background: var(--accent-dim); color: var(--accent);">⚡</div>
+      <div class="card-title">Edge Deploy</div>
+      <div class="card-desc">Ship to 300+ PoPs globally in under 100ms. Zero cold starts.</div>
+    </div>
+    <div class="card">
+      <div class="card-accent-bar" style="background: var(--accent3);"></div>
+      <div class="card-icon" style="background: rgba(126,184,255,0.1); color: var(--accent3);">🔒</div>
+      <div class="card-title">End-to-End Encryption</div>
+      <div class="card-desc">Military-grade AES-256. Keys never leave your device.</div>
+    </div>
+    <div class="card">
+      <div class="card-accent-bar" style="background: var(--accent4);"></div>
+      <div class="card-icon" style="background: rgba(212,168,255,0.1); color: var(--accent4);">◈</div>
+      <div class="card-title">AI Pipeline</div>
+      <div class="card-desc">Automate workflows with intelligent agents and triggers.</div>
+    </div>
+  </div>
+</section>
+
+<!-- INPUTS -->
+<section class="section">
+  <div class="section-label">Form Inputs</div>
+  <div class="input-stack">
+    <div class="input-group">
+      <label class="input-label">Full name</label>
+      <div class="input-with-icon">
+        <span class="input-icon">
+          <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+        </span>
+        <input class="input-field" type="text" placeholder="Ada Lovelace">
+      </div>
+    </div>
+    <div class="input-group">
+      <label class="input-label">Email</label>
+      <div class="input-with-icon">
+        <span class="input-icon">
+          <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 8l10 6 10-6"/></svg>
+        </span>
+        <input class="input-field" type="email" placeholder="ada@example.com">
+      </div>
+      <span class="input-hint">We never share your email.</span>
+    </div>
+    <div class="input-group">
+      <label class="input-label">Error state</label>
+      <input class="input-field error" type="text" value="invalid-entry!!">
+      <span class="input-hint error">Only letters and numbers allowed.</span>
+    </div>
+    <div class="input-group">
+      <label class="input-label">Select plan</label>
+      <select class="select-field">
+        <option>Starter — Free</option>
+        <option>Pro — $12/mo</option>
+        <option>Team — $49/mo</option>
+        <option>Enterprise — Custom</option>
+      </select>
+    </div>
+  </div>
+</section>
+
+<!-- TOGGLES & CHECKBOXES -->
+<section class="section">
+  <div class="section-label">Toggles & Checkboxes</div>
+  <div class="toggle-row">
+    <div class="toggle-item" onclick="this.querySelector('.toggle').classList.toggle('on')">
+      <div class="toggle on"><div class="toggle-thumb"></div></div>
+      <div>
+        <div class="toggle-label">Dark mode</div>
+        <div class="toggle-sub">System preference override</div>
+      </div>
+    </div>
+    <div class="toggle-item" onclick="this.querySelector('.toggle').classList.toggle('on')">
+      <div class="toggle"><div class="toggle-thumb"></div></div>
+      <div>
+        <div class="toggle-label">Email notifications</div>
+        <div class="toggle-sub">Weekly digest and alerts</div>
+      </div>
+    </div>
+    <div class="toggle-item" onclick="this.querySelector('.toggle').classList.toggle('on')">
+      <div class="toggle on"><div class="toggle-thumb"></div></div>
+      <div>
+        <div class="toggle-label">Analytics tracking</div>
+        <div class="toggle-sub">Helps improve our product</div>
+      </div>
+    </div>
+  </div>
+  <div style="margin-top: 20px; display: flex; flex-direction: column; gap: 12px;">
+    <div class="toggle-item" onclick="this.querySelector('.checkbox').classList.toggle('checked')">
+      <div class="checkbox checked"></div>
+      <span class="toggle-label">I agree to the terms of service</span>
+    </div>
+    <div class="toggle-item" onclick="this.querySelector('.checkbox').classList.toggle('checked')">
+      <div class="checkbox"></div>
+      <span class="toggle-label">Subscribe to product updates</span>
+    </div>
+    <div class="toggle-item" onclick="this.querySelector('.checkbox').classList.toggle('checked')">
+      <div class="checkbox checked"></div>
+      <span class="toggle-label">Enable two-factor authentication</span>
+    </div>
+  </div>
+</section>
+
+<!-- AVATARS -->
+<section class="section">
+  <div class="section-label">Avatars</div>
+  <div class="avatar-row">
+    <div class="avatar avatar-sm" style="background: var(--accent-dim); color: var(--accent);">AL</div>
+    <div class="avatar avatar-md" style="background: rgba(126,184,255,0.15); color: var(--accent3);">TK</div>
+    <div class="avatar avatar-lg" style="background: rgba(212,168,255,0.15); color: var(--accent4); position: relative;">
+      SR
+      <div class="avatar-status" style="background: #7deda0;"></div>
+    </div>
+    <div class="avatar avatar-md" style="background: rgba(255,107,74,0.15); color: var(--accent2); position: relative;">
+      MR
+      <div class="avatar-status" style="background: #ffc952;"></div>
+    </div>
+    <div style="margin-left: 16px;">
+      <div class="avatar-group">
+        <div class="avatar avatar-md" style="background: var(--accent-dim); color: var(--accent);">A</div>
+        <div class="avatar avatar-md" style="background: rgba(126,184,255,0.15); color: var(--accent3);">B</div>
+        <div class="avatar avatar-md" style="background: rgba(212,168,255,0.15); color: var(--accent4);">C</div>
+        <div class="avatar avatar-md" style="background: var(--surface2); color: var(--muted); font-size: 11px;">+4</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRESS BARS -->
+<section class="section">
+  <div class="section-label">Progress</div>
+  <div class="progress-stack">
+    <div>
+      <div class="progress-header"><span>Storage</span><span>72%</span></div>
+      <div class="progress-bar"><div class="progress-fill" style="width:72%; background: var(--accent);"></div></div>
+    </div>
+    <div>
+      <div class="progress-header"><span>Bandwidth</span><span>38%</span></div>
+      <div class="progress-bar"><div class="progress-fill" style="width:38%; background: var(--accent3);"></div></div>
+    </div>
+    <div>
+      <div class="progress-header"><span>API calls</span><span>91%</span></div>
+      <div class="progress-bar" style="height: 8px;"><div class="progress-fill" style="width:91%; background: #ff8080;"></div></div>
+    </div>
+    <div>
+      <div class="progress-header"><span>Deployment</span><span>55%</span></div>
+      <div class="progress-bar" style="height: 4px; background: var(--surface2);"><div class="progress-fill" style="width:55%; background: var(--accent4);"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TABS -->
+<section class="section">
+  <div class="section-label">Tabs</div>
+  <div class="tabs" id="tabbar">
+    <div class="tab active" data-tab="0">Overview</div>
+    <div class="tab" data-tab="1">Analytics</div>
+    <div class="tab" data-tab="2">Settings</div>
+    <div class="tab" data-tab="3">Billing</div>
+  </div>
+  <div id="tab-content" class="tab-content">Showing overview: key metrics, recent activity, and system health at a glance.</div>
+</section>
+
+<!-- ALERTS -->
+<section class="section">
+  <div class="section-label">Alerts</div>
+  <div class="alert-stack">
+    <div class="alert alert-success">
+      <div class="alert-icon">✓</div>
+      <div><div class="alert-title">Deployment successful</div><div class="alert-body">Your app is live at edge-prod.acme.io</div></div>
+    </div>
+    <div class="alert alert-warning">
+      <div class="alert-icon">⚠</div>
+      <div><div class="alert-title">Storage at 80%</div><div class="alert-body">Consider upgrading or removing unused assets.</div></div>
+    </div>
+    <div class="alert alert-error">
+      <div class="alert-icon">✕</div>
+      <div><div class="alert-title">Build failed</div><div class="alert-body">TypeError at line 42: Cannot read property of undefined.</div></div>
+    </div>
+    <div class="alert alert-info">
+      <div class="alert-icon">ℹ</div>
+      <div><div class="alert-title">Scheduled maintenance</div><div class="alert-body">Service window: Jan 28, 02:00–04:00 UTC.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CHIPS -->
+<section class="section">
+  <div class="section-label">Tags / Chips</div>
+  <div class="chip-row">
+    <div class="chip active" onclick="this.classList.toggle('active')">React</div>
+    <div class="chip active" onclick="this.classList.toggle('active')">TypeScript</div>
+    <div class="chip" onclick="this.classList.toggle('active')">Node.js</div>
+    <div class="chip" onclick="this.classList.toggle('active')">GraphQL</div>
+    <div class="chip" onclick="this.classList.toggle('active')">PostgreSQL</div>
+    <div class="chip">Design Systems <span class="chip-x">✕</span></div>
+    <div class="chip">API Design <span class="chip-x">✕</span></div>
+  </div>
+</section>
+
+<!-- TOAST -->
+<section class="section">
+  <div class="section-label">Toast Notification</div>
+  <div class="toast-preview">
+    <div class="toast-dot" style="background: var(--accent);"></div>
+    <div class="toast-content">
+      <div class="toast-title">Changes saved</div>
+      <div class="toast-msg">Your profile was updated successfully.</div>
+    </div>
+    <div class="toast-close">✕</div>
+  </div>
+</section>
+
+<!-- SKELETON -->
+<section class="section">
+  <div class="section-label">Skeleton Loader</div>
+  <div class="skeleton-card" style="max-width: 360px;">
+    <div class="skeleton-header">
+      <div class="skeleton skeleton-circle" style="width:44px;height:44px;flex-shrink:0;"></div>
+      <div style="flex:1; display:flex; flex-direction:column; gap:8px;">
+        <div class="skeleton" style="height:14px; width:60%;"></div>
+        <div class="skeleton" style="height:12px; width:40%;"></div>
+      </div>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:8px;">
+      <div class="skeleton" style="height:12px; width:100%;"></div>
+      <div class="skeleton" style="height:12px; width:88%;"></div>
+      <div class="skeleton" style="height:12px; width:72%;"></div>
+    </div>
+    <div style="margin-top:16px; display: flex; gap:8px;">
+      <div class="skeleton" style="height:32px; width:80px; border-radius:6px;"></div>
+      <div class="skeleton" style="height:32px; width:60px; border-radius:6px;"></div>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLTIP -->
+<section class="section">
+  <div class="section-label">Tooltips (hover me)</div>
+  <div class="tooltip-row">
+    <div class="tooltip-wrap">
+      <button class="btn btn-outline">Deploy</button>
+      <div class="tooltip-box">Pushes to production instantly</div>
+    </div>
+    <div class="tooltip-wrap">
+      <button class="btn btn-icon">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4m0 4h.01"/></svg>
+      </button>
+      <div class="tooltip-box">Learn more about this feature</div>
+    </div>
+    <div class="tooltip-wrap">
+      <span class="badge badge-warning" style="cursor:default"><span class="badge-dot"></span>Pending</span>
+      <div class="tooltip-box">Awaiting admin approval</div>
+    </div>
+  </div>
+</section>
+
+<!-- DIVIDER -->
+<section class="section">
+  <div class="section-label">Dividers</div>
+  <div style="max-width: 440px; display: flex; flex-direction: column; gap: 16px;">
+    <hr class="divider">
+    <div class="divider-label">or continue with</div>
+    <hr class="divider">
+  </div>
+</section>
+
+<script>
+  const tabs = document.querySelectorAll('.tab');
+  const contents = [
+    'Showing overview: key metrics, recent activity, and system health at a glance.',
+    'Analytics: 14,830 active users this week. Conversion rate up 2.1%.',
+    'Settings: manage your account, security, and integrations here.',
+    'Billing: Pro plan · $49/mo · Next invoice Feb 1, 2025.'
+  ];
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById('tab-content').textContent = contents[tab.dataset.tab];
+    });
+  });
+</script>
+</body>
+</html>
