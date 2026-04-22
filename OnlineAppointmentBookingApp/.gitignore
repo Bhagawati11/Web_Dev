@@ -1,0 +1,43 @@
+# 🔐 Environment variables (VERY IMPORTANT)
+.env
+.env.*
+
+# 📦 Node modules (huge folder - never push)
+node_modules/
+
+# 🧾 Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# 🗂️ OS files
+.DS_Store
+Thumbs.db
+
+# 🧪 Coverage / testing
+coverage/
+
+# 🏗️ Build folders (if you add React later)
+build/
+dist/
+
+# 🧹 Temporary files
+tmp/
+temp/
+
+# 🧠 IDE / Editor files
+.vscode/
+.idea/
+*.swp
+
+# 🔒 Optional: config secrets
+config/*.json
+
+# 📁 Uploads (if users upload files/images)
+uploads/
+public/uploads/
+
+# 🚫 Ignore this weird folder if not needed
+.sixth/

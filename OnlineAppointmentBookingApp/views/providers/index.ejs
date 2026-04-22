@@ -1,0 +1,62 @@
+<%- include('../partials/header') %>
+
+<section class="section">
+  <div class="container">
+    <div class="section-heading">
+      <h1>Available Providers</h1>
+      <p>Choose from experienced professionals and book a convenient appointment slot.</p>
+    </div>
+
+    <% if (providers && providers.length) { %>
+      <div class="provider-grid">
+        <% providers.forEach(function(provider) { %>
+          <article class="provider-card">
+            <div class="provider-card__image-wrap">
+              <img src="<%= provider.image %>" alt="<%= provider.name %>" class="provider-card__image">
+            </div>
+
+            <div class="provider-card__content">
+              <div class="provider-card__top">
+                <div>
+                  <h2><%= provider.name %></h2>
+                  <p class="provider-specialty"><%= provider.specialty %></p>
+                </div>
+                <span class="fee">₹<%= provider.fee %></span>
+              </div>
+
+              <p class="provider-meta">
+                <strong><%= provider.experience %> years</strong> experience &middot; <%= provider.location %>
+              </p>
+
+              <p><%= provider.description %></p>
+
+              <div class="slot-list">
+                <h3>Available Slots</h3>
+                <% if (provider.availableSlots && provider.availableSlots.length) { %>
+                  <div class="slot-chips">
+                    <% provider.availableSlots.forEach(function(slot) { %>
+                      <span class="slot-chip"><%= slot %></span>
+                    <% }) %>
+                  </div>
+                <% } else { %>
+                  <p class="muted-text">No slots listed currently.</p>
+                <% } %>
+              </div>
+
+              <div class="provider-card__footer">
+                <a href="/appointments/new?provider=<%= provider._id %>" class="btn btn-primary">Book Now</a>
+              </div>
+            </div>
+          </article>
+        <% }) %>
+      </div>
+    <% } else { %>
+      <div class="empty-state">
+        <h3>No providers available</h3>
+        <p>We are updating our provider directory. Please check back soon.</p>
+      </div>
+    <% } %>
+  </div>
+</section>
+
+<%- include('../partials/footer') %>

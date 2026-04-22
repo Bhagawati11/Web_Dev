@@ -1,0 +1,48 @@
+<%- include('../partials/header') %>
+
+<section class="section">
+  <div class="container">
+    <div class="section-heading">
+      <h1>Appointments</h1>
+      <p>Review all booked appointments and monitor their current status.</p>
+    </div>
+
+    <% if (appointments && appointments.length) { %>
+      <div class="appointment-grid">
+        <% appointments.forEach(function(appointment) { %>
+          <article class="appointment-card">
+            <div class="appointment-card__header">
+              <div>
+                <h3><%= appointment.customerName %></h3>
+                <p class="muted-text"><%= appointment.email %> &middot; <%= appointment.phone %></p>
+              </div>
+              <span class="status-badge status-<%= appointment.status ? appointment.status.toLowerCase() : 'pending' %>">
+                <%= appointment.status || 'Pending' %>
+              </span>
+            </div>
+
+            <div class="appointment-card__body">
+              <p><strong>Provider:</strong> <%= appointment.provider ? appointment.provider.name : 'Not assigned' %></p>
+              <p><strong>Specialty:</strong> <%= appointment.provider ? appointment.provider.specialty : 'N/A' %></p>
+              <p><strong>Date:</strong> <%= appointment.appointmentDate %></p>
+              <p><strong>Slot:</strong> <%= appointment.slot %></p>
+              <p><strong>Reason:</strong> <%= appointment.reason %></p>
+            </div>
+
+            <div class="appointment-card__footer">
+              <a href="/appointments/<%= appointment._id %>" class="btn btn-primary btn-sm">View Details</a>
+            </div>
+          </article>
+        <% }) %>
+      </div>
+    <% } else { %>
+      <div class="empty-state">
+        <h3>No appointments found</h3>
+        <p>Start by booking your first appointment with one of our providers.</p>
+        <a href="/appointments/new" class="btn btn-primary">Book Appointment</a>
+      </div>
+    <% } %>
+  </div>
+</section>
+
+<%- include('../partials/footer') %>

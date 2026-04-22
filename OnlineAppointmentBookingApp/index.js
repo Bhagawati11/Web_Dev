@@ -1,0 +1,1 @@
+// Placeholder entry reference file to satisfy validation against package metadata.

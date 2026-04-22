@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Online Appointment Booking</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="/" class="brand">
+        <span class="brand-mark">+</span>
+        <span>CareConnect</span>
+      </a>
+
+      <nav class="site-nav" aria-label="Primary navigation">
+        <ul class="nav-links">
+          <li>
+            <a href="/" class="<%= currentPath === '/' ? 'active' : '' %>">Home</a>
+          </li>
+          <li>
+            <a href="/providers" class="<%= currentPath === '/providers' ? 'active' : '' %>">Providers</a>
+          </li>
+          <li>
+            <a href="/appointments" class="<%= currentPath === '/appointments' ? 'active' : '' %>">Appointments</a>
+          </li>
+          <li>
+            <a href="/appointments/new" class="<%= currentPath === '/appointments/new' ? 'active' : '' %>">Book Now</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-content">

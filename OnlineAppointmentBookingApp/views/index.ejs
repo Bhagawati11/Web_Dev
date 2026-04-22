@@ -1,0 +1,86 @@
+<%- include('partials/header') %>
+
+<section class="hero-section">
+  <div class="container">
+    <div class="hero-content">
+      <h1>Welcome to CareConnect</h1>
+      <p>Book appointments with healthcare professionals and service providers online. Find the right specialist for your needs and schedule appointments at your convenience.</p>
+      <div class="hero-actions">
+        <a href="/appointments/new" class="btn btn-primary btn-lg">Book Appointment</a>
+        <a href="/providers" class="btn btn-secondary btn-lg">View Providers</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section stats-section">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-number"><%= stats.providerCount %></div>
+        <div class="stat-label">Healthcare Providers</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number"><%= stats.appointmentCount %></div>
+        <div class="stat-label">Total Appointments</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number"><%= stats.specialtyCount %></div>
+        <div class="stat-label">Specialties</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number"><%= stats.pendingCount %></div>
+        <div class="stat-label">Pending Appointments</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<% if (featuredProviders && featuredProviders.length) { %>
+<section class="section">
+  <div class="container">
+    <div class="section-heading">
+      <h2>Featured Providers</h2>
+      <p>Meet some of our top-rated healthcare professionals ready to serve you.</p>
+    </div>
+
+    <div class="provider-grid">
+      <% featuredProviders.forEach(function(provider) { %>
+        <article class="provider-card">
+          <div class="provider-card__header">
+            <h3><%= provider.name %></h3>
+            <span class="specialty-badge"><%= provider.specialty %></span>
+          </div>
+
+          <div class="provider-card__body">
+            <p><strong>Experience:</strong> <%= provider.experience %> years</p>
+            <p><strong>Fee:</strong> $<%= provider.fee %></p>
+            <p><strong>Location:</strong> <%= provider.location %></p>
+            <p><strong>Available Slots:</strong> <%= provider.availableSlots %></p>
+          </div>
+
+          <div class="provider-card__footer">
+            <a href="/appointments/new?provider=<%= provider._id %>" class="btn btn-primary btn-sm">Book Now</a>
+          </div>
+        </article>
+      <% }) %>
+    </div>
+
+    <div class="text-center" style="margin-top: 2rem;">
+      <a href="/providers" class="btn btn-secondary">View All Providers</a>
+    </div>
+  </div>
+</section>
+<% } %>
+
+<section class="section cta-section">
+  <div class="container">
+    <div class="cta-content">
+      <h2>Ready to Book Your Appointment?</h2>
+      <p>Join thousands of satisfied patients who trust CareConnect for their healthcare needs.</p>
+      <a href="/appointments/new" class="btn btn-primary btn-lg">Get Started Today</a>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/footer') %>
